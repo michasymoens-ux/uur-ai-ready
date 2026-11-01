@@ -1,0 +1,503 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Brand AI-Readiness · the full record · iO</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="io-web.css">
+<style>
+  /* Page-specific only. Everything else comes from the iO Web 2026 tokens. */
+  *{box-sizing:border-box} body,html{overflow-x:hidden} img{max-width:100%}
+  .io-wrap>*{min-width:0} .io-grid>*{min-width:0}
+
+  /* Evidence states — one hue each, on the warm tints rather than invented pastels */
+  .st{display:inline-block;font-size:var(--io-t-small);font-weight:var(--io-w-strong);
+      padding:3px 12px;border-radius:var(--io-r-pill);white-space:nowrap;line-height:1.5}
+  .st-yes{background:#E4EADF;color:#3F5233}
+  .st-part{background:#F0E6DC;color:#7A5330}
+  .st-no{background:#EFE0DE;color:#7E3B33}
+
+  /* Sticky section nav — pill links, no uppercase, no arrows */
+  nav{position:sticky;top:0;z-index:20;background:rgba(242,233,228,.92);
+      backdrop-filter:blur(8px);border-bottom:1px solid rgba(35,35,35,.08)}
+  nav .io-wrap{display:flex;gap:6px;overflow-x:auto;padding-top:14px;padding-bottom:14px;
+      -webkit-mask-image:linear-gradient(90deg,#000 92%,transparent)}
+  nav a{flex:0 0 auto;text-decoration:none;color:var(--io-ink);font-size:var(--io-t-small);
+      font-weight:var(--io-w-body);padding:8px 16px;border-radius:var(--io-r-pill)}
+  nav a:hover{background:var(--io-tint-dark)}
+
+  /* Hero: the dark band, not a purple gradient */
+  .hero{background:var(--io-ink);color:var(--io-ink-on-dark);padding:var(--io-hero-top) 0 80px}
+  .hero .io-wrap{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:64px;align-items:start}
+  .hero h1{color:#fff;max-width:20ch;margin:.5em 0 .6em}
+  .hero .io-lead{max-width:56ch;color:rgba(255,255,255,.82)}
+  .hero .io-tag{background:rgba(255,255,255,.12);color:#fff}
+  .hero-logo{display:flex;flex-direction:column;align-items:flex-end;gap:28px;padding-top:6px}
+  .hero-logo img{width:76px;height:auto;display:block}
+  /* The claim, set as the brand device the critique asked for: one blue rule, one line */
+  .hero-claim{border-top:3px solid var(--io-blue);padding-top:18px;text-align:right;
+      font-size:var(--io-t-h3);line-height:1.3;color:#fff;max-width:260px}
+
+  /* Figures */
+  figure{margin:0}
+  figure img{width:100%;display:block;border-radius:var(--io-r-card);background:#fff}
+  figure.tall img{max-height:520px;width:auto;max-width:100%;object-fit:contain;border-radius:var(--io-r-small)}
+  figcaption{font-size:var(--io-t-small);line-height:1.6;color:rgba(35,35,35,.68);margin-top:12px;max-width:80ch}
+
+  /* Readiness map column control */
+  #map .io-table td:nth-child(1),#map .io-table th:nth-child(1){width:188px}
+  #map .io-table td:nth-child(2),#map .io-table th:nth-child(2){width:66px}
+  #map .io-table td:nth-child(5),#map .io-table th:nth-child(5){width:108px;white-space:nowrap}
+  #map .io-table td:nth-child(6),#map .io-table th:nth-child(6){width:208px}
+  #map .io-table td:nth-child(6) .st{display:block;width:fit-content;margin-bottom:4px}
+
+  /* Log */
+  .log{list-style:none;padding:0;margin:0}
+  .log li{display:grid;grid-template-columns:96px 1fr;gap:20px;padding:18px 0;
+      border-bottom:1px solid rgba(35,35,35,.08)}
+  .log li:last-child{border-bottom:0}
+  .log time{color:rgba(35,35,35,.55);font-size:var(--io-t-small)}
+  .log p{margin:0}
+
+  /* A quiet rule between sections on the same surface */
+  .io-section + .io-section > .io-wrap{border-top:1px solid rgba(35,35,35,.08);padding-top:var(--io-section-y)}
+  .io-band-alt + .io-band-alt > .io-wrap,
+  .io-band-dark + .io-section > .io-wrap,
+  .io-section + .io-band-alt > .io-wrap,
+  .io-band-alt + .io-section > .io-wrap{border-top:0;padding-top:0}
+
+  code{background:var(--io-tint-dark);padding:2px 6px;border-radius:6px;font-size:.92em}
+  .claim{font-size:var(--io-t-h3);line-height:1.35;max-width:46ch;margin:28px 0 0}
+  .io-band-dark .claim{color:#fff}
+  .meta{font-size:var(--io-t-small);line-height:1.6;color:rgba(35,35,35,.62);max-width:84ch}
+  .io-band-dark .meta{color:rgba(255,255,255,.7)}
+  ul.plain{margin:14px 0 0;padding-left:22px}
+  ul.plain li{margin-bottom:10px;max-width:88ch}
+
+  @media(max-width:900px){
+    .hero{padding:72px 0 56px}
+    .hero h1{max-width:100%}
+    .hero .io-wrap{grid-template-columns:1fr;gap:28px}
+    .hero-logo{align-items:flex-start;order:-1;padding-top:0}
+    .hero-claim{text-align:left;max-width:100%}
+    #map .io-table td,#map .io-table th{width:auto!important;white-space:normal!important}
+    .log li{grid-template-columns:72px 1fr;gap:12px}
+    .io-table{font-size:var(--io-t-small)}
+    .io-table th,.io-table td{padding:10px 12px}
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="io-wrap">
+    <div>
+      <span class="io-tag">The full record · every test, every number · 1 November 2026</span>
+      <h1 class="io-display">The full record</h1>
+      <p class="io-lead">Every test we ran, with the numbers and the caveats. This is the evidence behind the story — written for anyone who wants to challenge a claim rather than read one. <strong>If you have not read the story yet, start there.</strong></p>
+      <p style="margin-top:28px">
+        <a class="io-btn io-btn--primary" href="index.html">Read the story first</a>
+        <a class="io-btn io-btn--quiet-on-dark" href="#map">Jump to the readiness map</a>
+      </p>
+    </div>
+    <div class="hero-logo">
+      <img src="img/io_logo_white.svg" alt="iO">
+      <p class="hero-claim">The evidence,<br>unabridged.</p>
+    </div>
+  </div>
+</header>
+
+<nav><div class="io-wrap">
+  <a href="#summary">Where we are</a><a href="#method">Method</a><a href="#map">Readiness map</a>
+  <a href="#packaging">Packaging</a><a href="#ablation">Ablation</a><a href="#brand">The brand</a>
+  <a href="#code">Brand as code</a><a href="#imagery">Imagery</a><a href="#ladder">Progress</a>
+  <a href="#next">Next</a><a href="#log">Log</a>
+</div></nav>
+
+<section class="io-section" id="summary"><div class="io-wrap">
+  <h2>Where we are</h2>
+  <p class="io-lead" style="max-width:70ch">The brand core is designed, the parametric layer is built, and the kit now produces a print-ready packaging file that passes preflight unattended. The question we answer is not <em>can AI reproduce a brand</em> — it is <strong>which parts of a brand kit are load-bearing, and where control ends</strong>.</p>
+
+  <div class="io-grid io-g4" style="margin-top:40px">
+    <div class="io-stat"><b>13/13</b><span class="meta">producibility checks passed on the pack artwork, up from 10/13 — but <strong>identity is 1 of 3</strong> until the master SVG and real tokens land</span></div>
+    <div class="io-stat"><b>7/10</b><span class="meta">reached by an identity-only kit; the three it misses are trim geometry, safe zone and barcode quiet zone</span></div>
+    <div class="io-stat"><b>12/12</b><span class="meta">voice rules passed with <em>and</em> without exemplars — a good prohibition needs no example</span></div>
+    <div class="io-stat"><b>1 in 6</b><span class="meta">correct logos when an image model makes the can: the boundary where exact artwork cannot be injected</span></div>
+  </div>
+
+</div></section>
+
+<section class="io-section io-band-alt"><div class="io-wrap">
+  <h2>What changed on 1 November</h2>
+  <p>Three corrections, all of which made the claim narrower and more defensible.</p>
+  <div class="io-grid io-g3" style="margin-top:28px">
+    <div class="io-card">
+      <h3>Correction cost, not hit rates</h3>
+      <p>A fidelity hit rate measures the image model of the month, so it expires. Correction cost — the human work between output and shippable — is a property of the brand kit, and it survives model upgrades.</p>
+    </div>
+    <div class="io-card">
+      <h3>Ablation, not with-kit vs without</h3>
+      <p>Hand an AI the master logo file and of course it reproduces the logo; that comparison cannot fail, so it proves little. Removing one kit component at a time shows which components actually carry the result.</p>
+    </div>
+    <div class="io-card">
+      <h3>For packaging, the file — not a mockup</h3>
+      <p>Asking a model for a packshot tests whether it can fake a file the kit produces exactly. So we produce the print-ready flat and check it with preflight, the same check the client's printer uses.</p>
+    </div>
+  </div>
+</div></section>
+
+<section class="io-section" id="method"><div class="io-wrap">
+  <h2>Method: three drawers</h2>
+  <p>"AI-ready" is not one thing. Every brand element sits in one of three drawers, and each drawer is reproduced and reviewed differently.</p>
+  <div class="io-grid io-g3" style="margin-top:28px">
+    <div class="io-card">
+      <h3>Deterministic</h3>
+      <p>Logo, tokens, type, layouts — assembled from the exact source file. <strong>Exact.</strong> Reviewed automatically.</p>
+    </div>
+    <div class="io-card">
+      <h3>Parametric</h3>
+      <p>Palette, light, grain, motion — written as seeded code. <strong>Exact and infinitely variable.</strong> Same input, same output.</p>
+    </div>
+    <div class="io-card">
+      <h3>Generative</h3>
+      <p>Products in scenes, lifestyle, video — made by image models with references. <strong>Faithful, not exact.</strong> Needs a human sign-off.</p>
+    </div>
+  </div>
+  <p class="meta" style="margin-top:24px">Why an invented brand: we own the ground truth, there is no NDA, and failures can be shown in public.</p>
+</div></section>
+
+<section class="io-section io-band-alt" id="map"><div class="io-wrap">
+  <h2>The readiness map</h2>
+  <p class="io-lead" style="max-width:70ch">This is what a client actually buys. Not a badge and not a score — a profile. Every element gets a declared reproduction route, a source of truth a machine can read without interpreting it, a quality bar you can measure, who checks it, and a named person who owns the final call.</p>
+  <p>The evidence column is the discipline: measured, partly measured, or untested. A row with no evidence is a claim, not a finding — so we print the claims too.</p>
+
+  <div class="io-table-wrap" style="margin-top:28px"><table class="io-table">
+    <tr><th>Element</th><th>Drawer</th><th>Source of truth</th><th>Quality bar</th><th>Check</th><th>Evidence</th></tr>
+    <tr><td><strong>Wordmark</strong></td><td>1</td><td>master SVG</td><td>pixel diff ≈ 0</td><td>auto</td><td><span class="st st-yes">measured</span>1.00 vs 0.69</td></tr>
+    <tr><td>Small-size cut</td><td>1</td><td>separate SVG + min-size rule</td><td>legible 24–64 px</td><td>auto + human</td><td><span class="st st-yes">measured</span>blind read</td></tr>
+    <tr><td>Micro mark</td><td>1</td><td>separate SVG</td><td>readable at 32 px</td><td>auto + human</td><td><span class="st st-part">partly measured</span></td></tr>
+    <tr><td><strong>Colour tokens</strong> (24 h)</td><td>2</td><td>OKLab code from measured skies</td><td>colour distance to the true sky</td><td>auto</td><td><span class="st st-yes">measured</span>0.013 vs 0.086</td></tr>
+    <tr><td><strong>Light field</strong> (the hour)</td><td>2</td><td>seeded code</td><td>same input = same image; hour readable</td><td>auto + human</td><td><span class="st st-yes">measured</span>10/10 blind</td></tr>
+    <tr><td>Grain</td><td>2</td><td>shader port of the designer's recipe</td><td>matches spec, no banding</td><td>auto + human</td><td><span class="st st-yes">measured</span>~80–85%</td></tr>
+    <tr><td>Type system</td><td>1</td><td>named families + hierarchy rules</td><td>no substitution</td><td>auto</td><td><span class="st st-part">partly measured</span>licensing open</td></tr>
+    <tr><td><strong>Pack structure spec</strong></td><td>1</td><td>dieline, bleed, safe zone, barcode, type minima</td><td>preflight pass</td><td>auto</td><td><span class="st st-yes">measured</span>7/10 without it</td></tr>
+    <tr><td><strong>Flat pack artwork</strong></td><td>1 → 2</td><td>kit + pack spec, assembled by code</td><td>producibility 13/13 <em>and</em> identity 3/3</td><td>auto</td><td><span class="st st-part">partly measured</span>producibility 13/13, identity 1/3</td></tr>
+    <tr><td>Pack mockup</td><td>1</td><td>the real flat on spec geometry</td><td>byte-identical re-render</td><td>auto</td><td><span class="st st-part">partly measured</span>picture parked</td></tr>
+    <tr><td><strong>Voice</strong></td><td>3</td><td>prohibitive rules + avoid-lists + exemplars</td><td>auto-rules 100% plus a blind human read</td><td><strong>human gate</strong></td><td><span class="st st-part">partly measured</span>read pending</td></tr>
+    <tr><td>Product in lifestyle</td><td>3</td><td>reference plates + QC rubric</td><td>per-element QC, hit rate recorded</td><td><strong>human gate</strong></td><td><span class="st st-part">partly measured</span></td></tr>
+    <tr><td>Motion / video</td><td>2 in 3</td><td><em>intended: vector motion file</em></td><td>seamless loop; logo identical every frame</td><td>auto + human</td><td><span class="st st-no">untested</span>no owner</td></tr>
+  </table></div>
+
+  <h3 style="margin-top:44px">What the profile says — and why it is not a score</h3>
+  <div class="io-grid io-g3" style="margin-top:20px">
+    <div class="io-card">
+      <h3>Ready, checked automatically</h3>
+      <p>Wordmark, colour tokens, light field, grain, pack spec, flat artwork. Exact, repeatable, and a script says yes or no. No human needs to look.</p>
+    </div>
+    <div class="io-card">
+      <h3>Ready, with a named gate</h3>
+      <p>Voice and lifestyle imagery. The method raises quality and bounds the risk, but a person still signs — and we say who.</p>
+    </div>
+    <div class="io-card">
+      <h3>Not ready</h3>
+      <p>Motion has no evidence and no owner, so it is the one drawer that is still only a claim. Type licensing is open. We print that rather than rounding it up.</p>
+    </div>
+  </div>
+  <p class="claim">A brand is not AI-ready or not. It is ready per element, per use case — and the map is the answer.</p>
+  <p class="meta" style="margin-top:20px">Building this map is what exposed the motion gap and the open type licensing. That is the point of the artefact: it makes the unowned parts of a brand visible. The same blank table is the template for any other brand.</p>
+</div></section>
+
+<section class="io-section" id="packaging"><div class="io-wrap">
+  <h2>Packaging: produce the file, don't generate the picture</h2>
+  <p class="io-lead" style="max-width:70ch">A brand's packaging deliverable is the print-ready flat artwork — the file that goes to a printer. It is deterministic, it comes out of the kit, and it has a hard pass criterion the industry already uses: preflight.</p>
+
+  <div class="io-grid io-g3" style="margin-top:28px">
+    <div class="io-card">
+      <h3>Flat artwork</h3>
+      <p>Built from <code>BRAND.md</code> plus the pack structure spec. <strong>Pass criterion: preflight.</strong> Machine-checked, no human eye needed.</p>
+    </div>
+    <div class="io-card">
+      <h3>Mockup</h3>
+      <p>The real flat wrapped onto the object's measured geometry. <strong>Correct by construction</strong> — it is the actual artwork, not an impression of it.</p>
+    </div>
+    <div class="io-card">
+      <h3>Environment</h3>
+      <p>The café, the hand, the light, made by an image model. <strong>Scene only.</strong> The pack enters as a composite.</p>
+    </div>
+  </div>
+
+  <h3 style="margin-top:44px">The patch cycle, closed</h3>
+  <p>We planted two defects in the first flat on purpose — legal type below the minimum size, and a barcode without its quiet zone — to check that the loop actually catches and closes.</p>
+  <div class="io-table-wrap" style="margin-top:20px"><table class="io-table">
+    <tr><th>Run</th><th>Producibility checks passed</th><th>What it caught</th></tr>
+    <tr><td>Flat v0.1</td><td><span class="st st-part">10 / 13</span></td><td>legal type 4.5 pt against a 7.0 pt minimum; barcode quiet zone 0.59 mm against 3.0 mm</td></tr>
+    <tr><td>Flat v0.2, after patching the kit</td><td><span class="st st-yes">13 / 13</span></td><td>no failures</td></tr>
+  </table></div>
+  <p class="meta" style="margin-top:16px">Checked: trim box against the dieline (207.70 × 166.00 mm), bleed on all four sides, minimum and legal type sizes, required claims present (<code>0,0% vol</code>, <code>500 ml</code>), text inside the safe zone, exact token colours, barcode quiet zone, fonts embedded — plus three checks on the spec itself.</p>
+  <figure class="tall" style="margin-top:28px"><img src="img/flat_preflight_pass.jpg" alt="UUR flat pack artwork that passes all thirteen preflight checks"><figcaption>The flat that passes 13 of 13 <strong>producibility</strong> checks. It is a <strong>producible</strong> file, not yet an on-brand one: the wordmark is set in Helvetica and the palette is placeholder, so it scores <strong>1 of 3 on identity</strong>. Dimensions are real.</figcaption></figure>
+
+  <h3 style="margin-top:44px">A spec can contradict itself</h3>
+  <p>Our first attempt paired one can's wrap width with another can's diameter. The numbers looked plausible and the render came out looking like a food tin. So preflight now checks the spec before the artwork.</p>
+  <div class="io-table-wrap" style="margin-top:20px"><table class="io-table">
+    <tr><th>Spec</th><th>Wrap width against the true circumference (π × 66 = 207.35 mm)</th><th>Verdict</th></tr>
+    <tr><td>First attempt, 203.0 mm</td><td>4.35 mm short — impossible</td><td><span class="st st-no">caught</span></td></tr>
+    <tr><td>Real template, 207.7 mm</td><td>0.35 mm over, within the seam overlap</td><td><span class="st st-yes">pass</span></td></tr>
+  </table></div>
+  <p class="meta" style="margin-top:16px">A client's own dieline can carry exactly the same contradiction. Catching it before artwork is produced is part of the service, not housekeeping.</p>
+
+  <h3 style="margin-top:44px">Printable is not the same as ours</h3>
+  <p>Looking at the flat above, Micha asked the right question: does an off-brand file pass too? We built two to find out, and ran them through the unchanged checker.</p>
+  <div class="io-table-wrap" style="margin-top:20px"><table class="io-table">
+    <tr><th>Flat</th><th>What is wrong with it</th><th>Producibility</th><th>Identity</th></tr>
+    <tr><td>Our showcase flat</td><td>Helvetica stand-in, placeholder palette</td><td><span class="st st-yes">13 / 13</span></td><td><span class="st st-part">1 / 3</span></td></tr>
+    <tr><td>Probe: wrong mark</td><td>correct colour, but the wordmark reads "KLOK" in a serif</td><td><span class="st st-yes">13 / 13</span></td><td><span class="st st-no">0 / 3</span></td></tr>
+    <tr><td>Probe: fully off brand</td><td>hot pink, serif face, "KLOK", wrong hour</td><td><span class="st st-part">12 / 13</span></td><td><span class="st st-no">0 / 3</span></td></tr>
+  </table></div>
+  <p style="margin-top:20px">A flat whose wordmark said <strong>KLOK</strong> in Times scored a clean pass. That is not an edge case — it follows directly from what the checks inspect. Three of them validate the spec against itself, five check geometry against the spec, two check type <em>sizes</em>, two check that a required <em>string</em> is present, one is technical. <strong>None of them asked whether the brand was the brand.</strong> The colour check compared the artwork to whichever hex the spec happened to hold, which is a placeholder, so it was self-referential.</p>
+  <div class="io-grid io-g2" style="margin-top:24px">
+    <div class="io-card">
+      <h3>What we added</h3>
+      <p>Three identity criteria, reported separately and checked against <strong>source assets</strong> rather than values copied into the spec: the wordmark against the master SVG, the typeface against the kit's allowed list, and the palette against <code>BRAND.md</code>. When producibility is perfect and identity is not, the tool now says so out loud.</p>
+    </div>
+    <div class="io-card">
+      <h3>Why it is worth publishing</h3>
+      <p>A producibility checker that cannot fail an off-brand file is a silent-failure generator: the output looks compliant, passes every automatic gate, and is wrong. This was our own method's blind spot, in the one place we forgot our own rule — assemble from source, verify against source.</p>
+    </div>
+  </div>
+  <p class="claim">A preflight generated from the spec can only verify conformance to the spec. Identity has to be checked against the source.</p>
+
+  <h3 style="margin-top:44px">Deterministic by proof, not by promise</h3>
+  <p>The mockup is rendered from the preflight-passed flat on geometry read from the spec. Re-rendering the same view produced a byte-identical image — the same SHA-256 hash twice. No generative route can do that.</p>
+  <figure class="tall" style="margin-top:20px"><img src="img/can_deterministic_wrap_r4.jpg" alt="UUR can with the exact flat artwork wrapped onto measured geometry"><figcaption><strong>Honest status: the route is proven, the picture is not finished.</strong> The artwork is exact because it is the real file. But the type does not foreshorten around the cylinder, the lid hardware is unreadable at this size, and the lighting is incoherent. Those are CGI craft problems, not brand-kit problems — so this goes to a specialist or a supplier mockup rather than another round of our own polishing.</figcaption></figure>
+
+  <div class="io-grid io-g2" style="margin-top:32px">
+    <div class="io-card">
+      <h3>What this adds to the kit</h3>
+      <p>The pack structure spec — dieline, bleed, safe zone, legal panel, barcode, minimum type sizes, variant and hour states — becomes first-class kit content. An identity-only kit of logo, colours and type cannot produce a compliant flat. That is now a measurable finding, not an opinion.</p>
+    </div>
+    <div class="io-card">
+      <h3>Where the bottle stands</h3>
+      <p>The 89.7 × 99 mm front label is producible and testable today; preflight does not need the bottle to exist. The render stays parked: a diameter and a height are a bounding box, not a measured profile — shoulder curve, punt and glass thickness are unknown, and inventing them is the error we refuse to make.</p>
+    </div>
+  </div>
+</div></section>
+
+<section class="io-section io-band-dark" id="ablation"><div class="io-wrap">
+  <h2 style="color:#fff">The experiment that can actually fail</h2>
+  <p class="io-lead" style="max-width:68ch;color:rgba(255,255,255,.82)">The equipped agent was handed the master logo file. Of course it reproduced the logo — that result is arithmetic, not evidence. The question a client needs answered is which parts of the kit are worth building, so we remove one component at a time and measure what breaks.</p>
+  <p class="claim">Each row yields one sentence a brand team can act on. That table — not the before-and-after — is the deliverable.</p>
+</div></section>
+
+<section class="io-section"><div class="io-wrap">
+  <h2>The ablation table</h2>
+  <div class="io-table-wrap" style="margin-top:20px"><table class="io-table">
+    <tr><th>Remove from the kit</th><th>Question it answers</th><th>Result</th></tr>
+    <tr><td>The pack structure spec, keeping the identity</td><td>Is an identity-only kit enough to produce a printable file?</td><td><span class="st st-part">7 / 10</span></td></tr>
+    <tr><td>The voice exemplars, keeping the rules</td><td>Do rules work without examples?</td><td><span class="st st-yes">12 / 12 both</span></td></tr>
+    <tr><td>The master logo file, keeping the written construction rules</td><td>Can a brand book substitute for the source file?</td><td><span class="st st-no">to run</span></td></tr>
+    <tr><td>The meaning layer, keeping tokens and rules</td><td>Can a machine decide a case the rules don't cover?</td><td><span class="st st-no">to run</span></td></tr>
+  </table></div>
+
+  <h3 style="margin-top:44px">Row one: the kit minus its pack structure spec</h3>
+  <p>A fresh AI in an isolated context received identity only — colours, a typography note, the required claims — and no dieline, bleed, safe zone, type minimums or barcode specs. It had to infer every structural decision from packaging convention, then produce a print-ready flat.</p>
+  <div class="io-grid io-g2" style="margin-top:24px">
+    <div class="io-card">
+      <h3>Reached from convention · 7</h3>
+      <p>Bleed, minimum type size, both required claims, exact brand colours, embedded fonts — and the legal type size, which it derived correctly from EU food-information and net-quantity regulation, and cited.</p>
+    </div>
+    <div class="io-card">
+      <h3>Unreachable without the spec · 3</h3>
+      <p>Trim geometry — it produced 213.3 × 115.0 mm against the true 207.7 × 166.0 mm — plus the safe zone and the barcode quiet zone. These are exactly the criteria that decide whether a file can be printed and scanned.</p>
+    </div>
+  </div>
+  <p class="claim">An identity-only brand kit gets you 7 of 10 on print-readiness. The three it misses decide whether the file can actually be printed and scanned.</p>
+
+  <h3 style="margin-top:44px">Three things we did not expect</h3>
+  <div class="io-grid io-g3" style="margin-top:20px">
+    <div class="io-card">
+      <h3>A wrong spec can be coherent</h3>
+      <p>Its invented dieline passed our own self-consistency check — the width was only 2.7% out. But the decoration height was 30.7% wrong. So an internal check cannot catch a coherent-but-wrong spec; only the real dieline can. That is a limit of our method, and we state it.</p>
+    </div>
+    <div class="io-card">
+      <h3>Regulation substitutes for the kit</h3>
+      <p>It got the regulated values right without the kit, by citing EU law. So a brand kit only needs to carry what regulation does not already fix — provided it names the market. That reduces the authoring burden significantly.</p>
+    </div>
+    <div class="io-card">
+      <h3>Gaps invite confident fabrication</h3>
+      <p>Where the kit was silent it invented a barcode with a valid check digit — structurally scannable, not an allocated number — and plausible nutrition copy. Both would pass a visual review. An incomplete kit does not just lose precision; it produces output that looks compliant.</p>
+    </div>
+  </div>
+  <p class="meta" style="margin-top:20px">It also challenged the brief: a two-piece can is printed directly on the cylinder and has no seam at all, so a seam allowance only applies to a wrap label or sleeve. We are re-checking our own spec against the converter template — the ablation found a possible error in the equipped kit, not just the reduced one.</p>
+</div></section>
+
+<section class="io-section io-band-alt"><div class="io-wrap">
+  <h2>Row two: the kit minus its voice exemplars</h2>
+  <p>Two fresh AIs wrote 12 new Dutch campaign lines each. One had the voice rules plus fifteen on-brand and fifteen off-brand examples; the other had the rules alone. We checked first that neither had simply copied the examples, then scored every line against the brand's six voice rules.</p>
+  <div class="io-table-wrap" style="margin-top:24px"><table class="io-table">
+    <tr><th>Voice rule (machine-checked)</th><th>With exemplars</th><th>Rules only</th></tr>
+    <tr><td>Short and dry, around eight words</td><td>12 / 12</td><td>12 / 12</td></tr>
+    <tr><td>Never preachy</td><td>12 / 12</td><td>12 / 12</td></tr>
+    <tr><td>Never defensive about the absence of alcohol</td><td>12 / 12</td><td>12 / 12</td></tr>
+    <tr><td>No health or function claims</td><td>12 / 12</td><td>12 / 12</td></tr>
+    <tr><td>No exclamation marks</td><td>12 / 12</td><td>12 / 12</td></tr>
+    <tr><td><strong>Fully compliant lines</strong></td><td><span class="st st-yes">12 / 12</span></td><td><span class="st st-yes">12 / 12</span></td></tr>
+  </table></div>
+  <p style="margin-top:24px"><strong>A null result, and it is the useful kind.</strong> A competent model obeys a well-written prohibition without being shown examples. If a rule can be stated as "never this, avoid these words", exemplars add nothing to compliance. That is a saving, and it narrows the question to where exemplars actually earn their place.</p>
+
+  <div class="io-grid io-g2" style="margin-top:24px">
+    <div class="io-card">
+      <h3>What the exemplars were really carrying</h3>
+      <p>The rules never state an address form. The examples do, implicitly — fourteen of fifteen informal or impersonal, none formal. The kit without them produced a formal "u" on a Flemish consumer brand: a tone break a client would reject. It also ran about 15% longer per line and used the brand's full-stop device in 11 of 12 lines against 6 of 12.</p>
+    </div>
+    <div class="io-card">
+      <h3>And it is a silent failure</h3>
+      <p>Every line passes every automatic check. The off-brand set is wrong in a way no rule in the kit can catch, so an automated voice checker would approve it. The AI itself flagged the gap in its assumptions: "the kit does not specify an address form". The honest answer is a human gate, and a blind read is now part of the method.</p>
+    </div>
+  </div>
+  <p class="claim">Exemplars don't improve rule compliance — a good prohibition does that. They encode what nobody wrote down: address form, rhythm, how often to use a brand device.</p>
+  <p class="meta" style="margin-top:20px"><strong>Honest limits:</strong> one run per condition, and the address-form finding rests on a single violation, so it is suggestive rather than conclusive. Both agents were the same model, so this null result is model-dependent. Two criteria — is it about the moment, and is it unmistakably UUR — need a Flemish human reader, which is pending as a blind read of all 24 lines.</p>
+</div></section>
+
+<section class="io-section" id="brand"><div class="io-wrap">
+  <h2>The brand: UUR</h2>
+  <p class="io-lead" style="max-width:70ch">Flemish for <em>hour</em>. A non-alcoholic craft drink for every moment of the day. The range is named after the hour — 07:00, 18:00, 23:00 — and the hour drives product, colour and light.</p>
+  <p>Subline: <strong>Bedwelmend lekker. Altijd helder.</strong> Brand law: never blurry, because in this category blur means alcohol.</p>
+  <figure style="margin-top:28px"><img src="img/hero_18.jpg" alt="UUR 18:00 brand frame with the wordmark on that hour's light field"><figcaption>18:00. The wordmark, designed by Micha Symoens, on the light field for that hour.</figcaption></figure>
+  <div class="io-grid io-g2" style="margin-top:28px">
+    <figure><img src="img/small_cut.jpg" alt="Master wordmark beside the small-size cut"><figcaption>Master wordmark and a small-size cut for use under 2.5 cm, tested for legibility at can size.</figcaption></figure>
+    <figure><img src="img/micro_mark.jpg" alt="Micro mark for icons"><figcaption>Micro mark for icons: one u, white, on night or dusk. The bite deepens when it would otherwise disappear.</figcaption></figure>
+  </div>
+</div></section>
+
+<section class="io-section io-band-alt" id="code"><div class="io-wrap">
+  <h2>Brand as code</h2>
+  <p class="io-lead" style="max-width:70ch">The trendiest parts of a brand — gradients, grain, motion — are the first to lose ownership in an image model. So here they are code.</p>
+
+  <h3 style="margin-top:36px">True sky colours</h3>
+  <p>Each hour's colour comes from a real photographed sky: Poly Haven HDRIs by day, with timestamp and GPS, and Wikimedia Commons at night. Hue is measured; saturation is designed.</p>
+  <figure style="margin-top:20px"><img src="img/palette_24h.jpg" alt="The 24-hour UUR palette"><figcaption>All 24 hours, generated from four anchor skies and three supporting ones. Every colour traces back to a source.</figcaption></figure>
+
+  <h3 style="margin-top:36px">The light carries the time</h3>
+  <p>There is no clock icon. The light source in the background sits where the sun or moon is at that hour. In a blind test a model guessed the hour from unlabelled frames within one hour, ten times out of ten.</p>
+  <figure style="margin-top:20px"><img src="img/day_cycle.jpg" alt="A day in ten frames"><figcaption>One logo, one system, ten hours. The same hour and seed always give the same image.</figcaption></figure>
+
+  <h3 style="margin-top:36px">A designer's grain, translated into code</h3>
+  <p>The designer's Illustrator recipe — gradient, then Pointillize, then Overlay — rebuilt as code and tuned against his own board. Compare the texture, not the colour: each side shows its own palette.</p>
+  <figure style="margin-top:20px"><img src="img/grain_compare.jpg" alt="Illustrator grain beside the code version"><figcaption>Left: the Illustrator original. Right: the code version. About 80 to 85% the same.</figcaption></figure>
+
+  <h3 style="margin-top:36px">Design round two</h3>
+  <p>The designer added a horizontal and a vertical sheared wordmark and a dedicated hour label — a dashed drop with AM/PM. The generator re-sets the label for every hour.</p>
+  <figure style="margin-top:20px"><img src="img/design_r2.jpg" alt="Design round two: sheared logos and hour label"><figcaption>Design round two by Micha Symoens: vertical stack for cans and bottles, horizontal shear lockup, hour label.</figcaption></figure>
+  <div class="io-grid io-g2" style="margin-top:28px">
+    <figure><img src="img/hourlabels.jpg" alt="Hour labels for every hour"><figcaption>The hour label for any hour, re-set from the designer's file. Never generated.</figcaption></figure>
+    <figure><img src="img/can07_bold_ab.jpg" alt="Bold can options A and B"><figcaption>A, left: the selected direction, logo filling 80% of the printable area. B, right: a rejected exploratory extreme.</figcaption></figure>
+  </div>
+</div></section>
+
+<section class="io-section" id="imagery"><div class="io-wrap">
+  <h2>Generated imagery, and where it stops</h2>
+  <p class="io-lead" style="max-width:70ch">We fed an image model label artwork rendered from the kit. Mood, light and colour came out strong in every image. The logo did not.</p>
+  <div class="io-grid io-g2" style="margin-top:28px">
+    <figure><img src="img/moodboard.jpg" alt="Moodboard round one with keepers and rejects"><figcaption>Moodboard round one, with keepers and honest rejects. The logo was correct on one of six generated cans, even with the master logo supplied as reference.</figcaption></figure>
+    <figure><img src="img/packshots.jpg" alt="Hybrid packshots: CGI can plus exact vector label"><figcaption>The answer: a CGI can plus the exact vector label from the kit, wrapped, shaded and with condensation. Logo overlap 0.76 to 0.79, against one in six when generated.</figcaption></figure>
+  </div>
+  <div class="io-grid io-g2" style="margin-top:28px">
+    <div class="io-card">
+      <h3>Lesson for brands</h3>
+      <p>Without a can in the frame, a non-alcoholic drink reads as alcohol: an amber tumbler looks like an aperitivo, a smoking coupe like a cocktail. Imagery rules need to state that explicitly.</p>
+    </div>
+    <div class="io-card">
+      <h3>The bottle render is parked</h3>
+      <p>A bottle makes liquid optics, glass refraction and curved decoration part of the problem. A valid render needs a real prototype or a measured 3D model. The label flat, however, is in scope and testable now.</p>
+    </div>
+  </div>
+</div></section>
+
+<section class="io-section io-band-alt" id="ladder"><div class="io-wrap">
+  <h2>Progress on the difficulty ladder</h2>
+  <p>The levels run from easy to hardest, each with a hypothesis and a pass criterion.</p>
+  <div class="io-table-wrap" style="margin-top:24px"><table class="io-table">
+    <tr><th>Level</th><th>Drawer</th><th>Status</th></tr>
+    <tr><td><strong>Print-ready pack artwork from the kit</strong></td><td>1 → 2</td><td><span class="st st-yes">proven, 13/13 preflight</span></td></tr>
+    <tr><td>Logo from the kit</td><td>1</td><td><span class="st st-yes">proven</span></td></tr>
+    <tr><td>Layout assembly: labels and lockups</td><td>1</td><td><span class="st st-part">built</span></td></tr>
+    <tr><td>Dynamic identity: the light carries the hour</td><td>2</td><td><span class="st st-yes">proven, blind test</span></td></tr>
+    <tr><td>Gradient and grain as code</td><td>2</td><td><span class="st st-yes">proven</span></td></tr>
+    <tr><td>Tone of voice</td><td>3</td><td><span class="st st-part">12/12 with and without exemplars; blind read pending</span></td></tr>
+    <tr><td>Can packshot, generated</td><td>3</td><td><span class="st st-part">boundary demonstration, 1/6</span></td></tr>
+    <tr><td>Can mockup from the real flat</td><td>1</td><td><span class="st st-part">route proven and deterministic; picture needs craft</span></td></tr>
+    <tr><td>Can in lifestyle</td><td>3</td><td><span class="st st-part">first round</span></td></tr>
+    <tr><td>Code gradient against AI gradient</td><td>2 / 3</td><td><span class="st st-part">material ready</span></td></tr>
+    <tr><td>AI writes a new motion loop</td><td>2</td><td><span class="st st-no">to do</span></td></tr>
+    <tr><td>Point-of-sale, flat and in context</td><td>1 / 3</td><td><span class="st st-no">to do</span></td></tr>
+    <tr><td>Video, and live code inside a generated scene</td><td>3 / 2-in-3</td><td><span class="st st-no">to do</span></td></tr>
+    <tr><td>Provenance: C2PA plus a visible label</td><td>3</td><td><span class="st st-no">to do</span></td></tr>
+  </table></div>
+</div></section>
+
+<section class="io-section" id="next"><div class="io-wrap">
+  <h2>Next</h2>
+  <div class="io-grid io-g3" style="margin-top:24px">
+    <div class="io-card">
+      <h3>Motion: assign it or drop it</h3>
+      <p>The readiness map shows motion as the one drawer with no evidence and no owner. Either build the vector-motion proof — a loop whose logo is exact by construction — or declare it out of scope. An untested row in a client-facing map is the overclaim this POC exists to avoid.</p>
+    </div>
+    <div class="io-card">
+      <h3>Finish the ablation table</h3>
+      <p>Two rows are measured. The logo row needs the master SVG, and it carries the strongest sentence available: whether a brand book can replace a source file.</p>
+    </div>
+    <div class="io-card">
+      <h3>Brand design</h3>
+      <p>The master wordmark and real sky tokens into the pack flat, plus the hour label, final serif, subline spacing and the prefix letters.</p>
+    </div>
+  </div>
+  <div class="io-grid io-g3" style="margin-top:28px">
+    <div class="io-card">
+      <h3>Bottle label and the can picture</h3>
+      <p>Build and preflight the 89.7 × 99 mm bottle label flat, with no render until a supplier mockup, measured CAD or physical prototype exists. The can mockup goes to a CGI specialist.</p>
+    </div>
+    <div class="io-card">
+      <h3>The blind read</h3>
+      <p>Twenty-four Dutch lines, shuffled, for a Flemish reader to score on the two criteria a machine cannot: is it about the moment, and is it unmistakably UUR.</p>
+    </div>
+    <div class="io-card">
+      <h3>Later phases</h3>
+      <p>Governed retrieval through MCP, provenance with C2PA, the full regulatory claims contract, point-of-sale, video, and the representation layer on a real brand.</p>
+    </div>
+  </div>
+</div></section>
+
+<section class="io-section io-band-alt" id="log"><div class="io-wrap">
+  <h2>Running log</h2>
+  <p>Newest first. The internal generation log contains every round, including the failures.</p>
+  <ul class="log" style="margin-top:24px">
+    <li><time>1 Nov</time><p><strong>Preflight split into producibility and identity.</strong> Micha asked what a 13/13 pass actually meant. Two deliberately off-brand probes proved the hole: a flat whose wordmark read "KLOK" in a serif scored a clean 13/13. None of the thirteen checks asked whether the brand was the brand, and the colour check compared artwork to a placeholder in our own spec. Three identity criteria added, checked against source assets. Our own showcase flat is now honestly 13/13 producibility and 1/3 identity.</p></li>
+    <li><time>1 Nov</time><p><strong>Readiness map built, 14 elements.</strong> Every element with its drawer, source of truth, quality bar, check type, owner and evidence state. Building it exposed two gaps the project had not confronted: motion has no evidence and no owner, and type licensing is not closed.</p></li>
+    <li><time>1 Nov</time><p><strong>Ablation row two: a null result that matters.</strong> Voice rules with and without exemplars both scored 12/12 on every machine-checkable rule. But the kit without exemplars produced a formal address form on a consumer brand, longer lines and overuse of a brand device — the exemplars were carrying the unwritten conventions, not the compliance.</p></li>
+    <li><time>1 Nov</time><p><strong>Ablation row one: 7/10.</strong> An identity-only kit reached 7 of 10 print-readiness criteria from convention; trim geometry, safe zone and barcode quiet zone were unreachable. Its invented spec was internally coherent but 30.7% wrong on height. It derived the regulated type sizes correctly from EU law, and fabricated a valid-check-digit barcode where the kit was silent.</p></li>
+    <li><time>1 Nov</time><p><strong>Packaging chain built and run.</strong> Flat artwork generated from the kit, thirteen-point preflight, patch cycle closed 10/13 to 13/13. Deterministic mockup from the real flat: byte-identical re-render. Render verdict: route proven, picture needs CGI craft.</p></li>
+    <li><time>1 Nov</time><p><strong>Spec self-consistency check added.</strong> Validated against our own faulty spec: a 203.0 mm wrap on a Ø66 body is 4.35 mm short of the circumference, and is now caught before artwork is produced.</p></li>
+    <li><time>1 Nov</time><p><strong>Flat artwork first.</strong> The packaging proof is the print-ready file checked by preflight, not a generated mockup. The one-in-six packshot result is re-filed as the boundary demonstration.</p></li>
+    <li><time>1 Nov</time><p><strong>Proof design sharpened.</strong> Correction cost replaces fidelity hit rate as the headline metric; ablation replaces with-kit-versus-without as the main experiment.</p></li>
+    <li><time>18 Oct</time><p><strong>Proof run one: text brief against the kit.</strong> Logo 0.69 to 1.00, colour distance 0.086 to 0.013, voice 5/15 to 15/15. Twelve kit gaps fixed in <code>BRAND.md</code> v0.2.</p></li>
+    <li><time>18 Oct</time><p><strong>BRAND.md v0.1</strong>, the machine kit: tokens plus rules per drawer, linted against Google's DESIGN.md spec.</p></li>
+    <li><time>18 Oct</time><p><strong>Krea moodboard.</strong> Mood strong, logo correct on one of six generated cans. Hybrid packshot built on a CGI can with the exact vector label.</p></li>
+    <li><time>18 Oct</time><p><strong>Logo system and grain.</strong> Master wordmark, small-size cut, micro mark, minimum sizes; the designer's Illustrator grain recipe ported to code.</p></li>
+    <li><time>18 Oct</time><p><strong>Light field and true-sky palette.</strong> The sun and moon icon dropped — the light carries the hour, blind test ten out of ten. Palette from 232 day skies and 597 night photographs, four anchors locked.</p></li>
+    <li><time>17 Oct</time><p><strong>Brand core.</strong> The name UUR, the hour as concept, tone of voice, subline.</p></li>
+    <li><time>7 Oct</time><p><strong>Project start.</strong> "Is your brand AI-ready?" — from webinar slogan to a measurable method.</p></li>
+  </ul>
+</div></section>
+
+<footer class="io-section"><div class="io-wrap">
+  <p class="meta">iO · Brand AI-Readiness proof of concept · internal R&amp;D. UUR is an invented brand, created for research.</p>
+  <p class="meta">Sky photographs shown and sampled: <em>Kiara 1 Dawn</em>, <em>Harties</em> and <em>The Sky Is On Fire</em> by Greg Zaal and Rico Cilliers (Poly Haven, CC0); <em>The Sky at Night (Explore ^5)</em> by Joe Hayhurst (Wikimedia Commons, CC BY 2.0). Additional colour values sampled from photographs by Jason Jacobs (CC BY 2.0) and Yugesh Pandey (CC BY-SA 4.0); those photographs are not reproduced here. Can mockup: stock render, internal use only. AI-generated images are labelled as such in the moodboard.</p>
+  <p class="meta"><strong>Pack dimensions</strong> — can Ø66 × 193 mm with 207.7 × 166 mm artwork, bottle Ø75 × 300 mm with an 89.7 × 99 mm front label — come from parametric mockup-template references. <strong>Licence and vendor attribution are pending, so this page is not cleared for external publication.</strong> The pack flat shown uses stand-in type and placeholder palette values, not the final UUR wordmark or sky tokens.</p>
+  <p class="meta">Styled with the iO Web 2026 system: tokens measured from <code>iodigital.com</code> on 1 November 2026. Manrope via Google Fonts (OFL).</p>
+</div></footer>
+
+</body>
+</html>

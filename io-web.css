@@ -1,0 +1,171 @@
+/* iO Web 2026 — design tokens
+ * EXTRACTED, NOT GUESSED. Measured from the live site www.iodigital.com/en-be
+ * on 2026-11-01 via CDP computed styles (no CSS custom properties are published,
+ * so every value below is read off painted elements).
+ *
+ * Sibling of the iO deck house style (see the io-brand skill). Use this for
+ * HTML/web artefacts; use io_deck.py for PowerPoint.
+ */
+
+:root {
+  /* ---- Colour -------------------------------------------------------- */
+  /* Warm base is the DOMINANT surface: 3.5M px² of painted area vs 22k for blue. */
+  --io-base:        #F2E9E4;  /* warm off-white — the signature surface */
+  --io-paper:       #FFFFFF;  /* cards and content panels on top of base */
+  --io-paper-alt:   #F8F8F8;  /* second light surface, large bands */
+  --io-ink:         #232323;  /* ALL body text and most headings */
+  --io-blue:        #0000D2;  /* Energetic Blue — accent ONLY, see rules */
+  --io-ink-on-dark: #FFFFFF;
+
+  /* Overlays measured on the site */
+  --io-scrim:       rgba(83, 66, 41, 0.4);    /* warm scrim over hero photography */
+  --io-tint-dark:   rgba(0, 0, 0, 0.05);      /* subtle panel tint */
+  --io-tint-light:  rgba(255, 255, 255, 0.1); /* secondary button fill */
+
+  /* ---- Typography ---------------------------------------------------- */
+  /* One family only. Weight 500 is the default — NOT 400. */
+  --io-font: Manrope, -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+
+  --io-w-body:   500;
+  --io-w-strong: 600;   /* the heaviest weight observed anywhere on the page */
+
+  /* Scale as painted (desktop). Fluid sizes on the real site; these are the anchors. */
+  --io-t-display: 72px;   /* lh 86.4  (1.20) — section opener, e.g. "Facts and figures" */
+  --io-t-stat:    52px;   /* lh 52    (1.00) — big numbers */
+  --io-t-h1:      42.4px; /* lh 46.64 (1.10) — hero headline */
+  --io-t-h2:      32px;   /* lh 38.4  (1.20) */
+  --io-t-h3:      24px;   /* lh 31.2  (1.30) */
+  --io-t-lead:    20.48px;/* lh 32.77 (1.60) — card titles at w600, lead copy at w500 */
+  --io-t-body:    16.16px;/* lh 25.86 (1.60) — body default */
+  --io-t-small:   14.16px;/* lh 22.66 (1.60) */
+
+  /* ---- Layout -------------------------------------------------------- */
+  --io-container: 1376px;  /* measured 28× — the real content width */
+  --io-gutter:    32px;
+  --io-section-y: 72px;    /* vertical section padding, top and bottom */
+  --io-hero-top:  106px;
+
+  /* ---- Radii --------------------------------------------------------- */
+  /* A deliberate ladder, not one value on everything. */
+  --io-r-pill:  100px;  /* 25× — every button and tag */
+  --io-r-card:  32px;   /* 22× — cards and media blocks */
+  --io-r-small: 16px;   /* 11× — small panels, inputs */
+  --io-r-xl:    128px;  /*  2× — large feature shapes */
+}
+
+/* ====================================================================== */
+/* Base                                                                    */
+/* ====================================================================== */
+
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--io-base);
+  color: var(--io-ink);
+  font-family: var(--io-font);
+  font-size: var(--io-t-body);
+  font-weight: var(--io-w-body);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4 { font-weight: var(--io-w-body); color: var(--io-ink); margin: 0 0 .5em; }
+h1 { font-size: var(--io-t-h1); line-height: 1.10; }
+h2 { font-size: var(--io-t-h2); line-height: 1.20; }
+h3 { font-size: var(--io-t-h3); line-height: 1.30; }
+p  { margin: 0 0 1em; max-width: 72ch; }
+
+.io-wrap { max-width: var(--io-container); margin: 0 auto; padding: 0 var(--io-gutter); }
+.io-section { padding: var(--io-section-y) 0; }
+.io-display { font-size: var(--io-t-display); line-height: 1.20; }
+.io-lead    { font-size: var(--io-t-lead); line-height: 1.6; }
+.io-small   { font-size: var(--io-t-small); line-height: 1.6; }
+
+/* ====================================================================== */
+/* Patterns                                                                */
+/* ====================================================================== */
+
+/* Buttons — always a full pill, 16px/24px padding, weight 500, height ~50px */
+.io-btn {
+  display: inline-block; border: 0; cursor: pointer;
+  font-family: inherit; font-size: var(--io-t-body); font-weight: var(--io-w-body);
+  padding: 16px 24px; border-radius: var(--io-r-pill); text-decoration: none;
+  line-height: 1;
+}
+.io-btn--primary   { background: var(--io-blue); color: #fff; }           /* the ONE blue CTA */
+.io-btn--dark      { background: var(--io-ink); color: #fff; }            /* default action */
+/* --io-tint-light is white at 10%: it only reads over photography or a dark band.
+ * On a light surface use the ink tint instead, or it renders as an invisible plate. */
+.io-btn--quiet     { background: var(--io-tint-dark); color: var(--io-ink); }
+.io-btn--quiet-on-dark { background: var(--io-tint-light); color: var(--io-ink-on-dark); }
+.io-btn--ghost     { background: transparent; color: #fff; box-shadow: inset 0 0 0 1px currentColor; }
+
+/* Card — 32px radius, white on the warm base, no shadow */
+.io-card {
+  background: var(--io-paper);
+  border-radius: var(--io-r-card);
+  padding: 32px;
+}
+.io-card--tint { background: var(--io-tint-dark); }
+
+/* Dark band — for a full-bleed statement section */
+.io-band-dark { background: var(--io-ink); color: var(--io-ink-on-dark); }
+.io-band-dark h1, .io-band-dark h2, .io-band-dark h3 { color: var(--io-ink-on-dark); }
+
+/* Light band — second surface to break rhythm */
+.io-band-alt { background: var(--io-paper-alt); }
+
+/* Hero over photography — warm scrim, never a plain black overlay */
+.io-hero { position: relative; color: #fff; padding: var(--io-hero-top) 0 var(--io-section-y); }
+.io-hero::before {
+  content: ""; position: absolute; inset: 0;
+  background: var(--io-scrim); pointer-events: none;
+}
+.io-hero > * { position: relative; }
+
+/* Stat — big number, small label underneath */
+.io-stat { display: flex; flex-direction: column; gap: 8px; }
+.io-stat b { font-size: var(--io-t-stat); font-weight: var(--io-w-body); line-height: 1; }
+
+/* Grids */
+.io-grid { display: grid; gap: var(--io-gutter); }
+.io-g2 { grid-template-columns: repeat(2, minmax(0,1fr)); }
+.io-g3 { grid-template-columns: repeat(3, minmax(0,1fr)); }
+.io-g4 { grid-template-columns: repeat(4, minmax(0,1fr)); }
+
+/* Table — inherits the card language rather than looking like a spreadsheet */
+.io-table-wrap { overflow-x: auto; }
+.io-table {
+  width: 100%; border-collapse: collapse;
+  background: var(--io-paper); border-radius: var(--io-r-small); overflow: hidden;
+  font-size: var(--io-t-body);
+}
+.io-table th, .io-table td {
+  text-align: left; padding: 14px 16px; vertical-align: top;
+  border-bottom: 1px solid rgba(35,35,35,.10);
+}
+.io-table th { font-weight: var(--io-w-strong); }
+.io-table tr:last-child td { border-bottom: 0; }
+
+/* Tag / pill label */
+.io-tag {
+  display: inline-block; padding: 4px 12px; border-radius: var(--io-r-pill);
+  font-size: var(--io-t-small); font-weight: var(--io-w-strong);
+  background: var(--io-tint-dark); color: var(--io-ink);
+}
+
+/* ====================================================================== */
+/* Responsive + accessibility floor                                        */
+/* ====================================================================== */
+
+@media (max-width: 900px) {
+  .io-g2, .io-g3, .io-g4 { grid-template-columns: 1fr; }
+  :root { --io-t-display: 40px; --io-t-h1: 30px; --io-t-h2: 24px; --io-t-stat: 36px; --io-section-y: 48px; }
+}
+a:focus-visible, button:focus-visible, .io-btn:focus-visible {
+  outline: 2px solid var(--io-blue); outline-offset: 3px;
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+}

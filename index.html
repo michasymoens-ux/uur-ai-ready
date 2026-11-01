@@ -1,0 +1,323 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>What it takes to make a brand AI-ready · iO</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="io-web.css">
+<style>
+  *{box-sizing:border-box} body,html{overflow-x:hidden} img{max-width:100%}
+  .io-wrap>*{min-width:0} .io-grid>*{min-width:0}
+
+  .hero{background:var(--io-ink);color:#fff;padding:var(--io-hero-top) 0 84px}
+  .hero .io-wrap{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:64px;align-items:start}
+  .hero h1{color:#fff;max-width:none;margin:.45em 0 .55em}
+  .hero .io-lead{max-width:54ch;color:rgba(255,255,255,.84)}
+  .hero .io-tag{background:rgba(255,255,255,.12);color:#fff}
+  .hero-logo{display:flex;flex-direction:column;align-items:flex-end;gap:28px;padding-top:6px}
+  .hero-logo img{width:76px;height:auto;display:block}
+  .hero-claim{border-top:3px solid var(--io-blue);padding-top:18px;text-align:right;
+      font-size:var(--io-t-h3);line-height:1.3;color:#fff;max-width:250px}
+
+  /* A beat: the unit of the story */
+  .beat>.io-wrap{max-width:var(--io-container)}
+  .beat-no{display:block;font-size:var(--io-t-small);color:var(--io-blue);
+      font-weight:var(--io-w-strong);margin-bottom:10px}
+  .io-band-dark .beat-no{color:#fff;opacity:.65}
+  .beat h2{max-width:26ch}
+  .beat .io-lead{max-width:62ch}
+  /* The one line a designer repeats in the corridor */
+  .sticks{font-size:var(--io-t-h2);line-height:1.25;max-width:40ch;margin:34px 0 0;
+      padding-left:22px;border-left:4px solid var(--io-blue)}
+  .io-band-dark .sticks{border-left-color:#fff;color:#fff}
+
+  figure{margin:0}
+  figure img{width:100%;display:block;border-radius:var(--io-r-card);background:#fff}
+  figure.flat img{border-radius:var(--io-r-small)}
+  figcaption{font-size:var(--io-t-small);line-height:1.6;color:rgba(35,35,35,.68);
+      margin-top:12px;max-width:78ch}
+  .io-band-dark figcaption{color:rgba(255,255,255,.7)}
+
+  /* Evidence, folded away. The sceptic opens it; nobody else has to. */
+  details{margin-top:28px;border-top:1px solid rgba(35,35,35,.14);padding-top:16px}
+  .io-band-dark details{border-top-color:rgba(255,255,255,.2)}
+  summary{cursor:pointer;font-size:var(--io-t-small);font-weight:var(--io-w-strong);
+      color:var(--io-ink);list-style:none}
+  .io-band-dark summary{color:#fff}
+  summary::-webkit-details-marker{display:none}
+  summary::before{content:"+ ";color:var(--io-blue);font-weight:var(--io-w-strong)}
+  .io-band-dark summary::before{color:#fff}
+  details[open] summary::before{content:"– "}
+  details .body{font-size:var(--io-t-small);line-height:1.65;color:rgba(35,35,35,.75);
+      margin-top:14px;max-width:84ch}
+  .io-band-dark details .body{color:rgba(255,255,255,.75)}
+  details .body p{margin:0 0 10px;max-width:84ch}
+  details .body code{background:rgba(35,35,35,.07);padding:2px 6px;border-radius:5px;font-size:.95em}
+  .io-band-dark details .body code{background:rgba(255,255,255,.14)}
+
+  .three h3{margin-bottom:6px}
+  .who{font-size:var(--io-t-small);color:rgba(35,35,35,.6);margin-top:10px}
+
+  footer .meta{font-size:var(--io-t-small);line-height:1.6;color:rgba(35,35,35,.62);max-width:86ch}
+
+  @media(max-width:900px){
+    .hero{padding:72px 0 56px}
+    .hero .io-wrap{grid-template-columns:1fr;gap:28px}
+    .hero h1{max-width:100%}
+    .hero-logo{align-items:flex-start;order:-1;padding-top:0}
+    .hero-claim{text-align:left;max-width:100%}
+    .sticks{font-size:var(--io-t-h3)}
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="io-wrap">
+    <div>
+      <span class="io-tag">iO · design research · November 2026</span>
+      <h1 class="io-display">What does it actually take<br>to make <span style="white-space:nowrap">a brand</span><br><span style="white-space:nowrap">AI&#8209;ready?</span></h1>
+      <p class="io-lead">Everybody is selling the question. Nobody will tell you what the answer looks like. So we invented a drinks brand, asked AI to make real things with it — packaging, campaign copy, product shots — and watched where it broke.</p>
+      <p style="margin-top:28px">
+        <a class="io-btn io-btn--primary" href="#beat1">Start with what broke</a>
+        <a class="io-btn io-btn--quiet-on-dark" href="#answer">Skip to the answer</a>
+      </p>
+    </div>
+    <div class="hero-logo">
+      <img src="img/io_logo_white.svg" alt="iO">
+      <p class="hero-claim">Four tests.<br>Three surprises.<br>One uncomfortable ending.</p>
+    </div>
+  </div>
+</header>
+
+<!-- ============================ SET-UP ============================ -->
+<section class="io-section beat"><div class="io-wrap">
+  <h2>First, a brand to break</h2>
+  <p class="io-lead">You cannot test this on a client. So we designed <strong>UUR</strong> — Dutch for <em>hour</em> — a non-alcoholic drinks brand named after the time of day. Real wordmark, real palette, real tone of voice, real packaging. Designed properly, by a designer, the normal way.</p>
+  <p>Then we rebuilt it as something a machine can read, and started asking AI to make things with it.</p>
+  <figure style="margin-top:28px"><img src="img/day_cycle.jpg" alt="The UUR identity across ten hours of the day, the light changing while the wordmark stays fixed">
+    <figcaption>One identity, ten hours. The wordmark never changes; the light does. We built that part as code, which turns out to matter later.</figcaption></figure>
+  <p class="sticks">Owning the brand means we can publish the failures.</p>
+</div></section>
+
+<!-- ============================ THE BRAND ============================ -->
+<section class="io-section io-band-alt beat"><div class="io-wrap">
+  <span class="beat-no">The brand</span>
+  <h2>The hour is the idea, so the hour had to be the design</h2>
+  <p class="io-lead">UUR is named after the time of day — 07:00, 18:00, 23:00. That is easy to say on a strategy slide and hard to make real. A logo that changes every hour becomes a gimmick within a week.</p>
+  <p>So we took the time out of the logo. The wordmark never moves. Everything that changes lives in the background — and it changes because of something true, not because a designer felt like it.</p>
+
+  <h3 style="margin-top:44px">The colours are stolen from real skies</h3>
+  <p>Every hour of the day borrows its colour from a photograph of an actual sky at that actual hour. Dawn comes from a South African sunrise. Midday from a clear blue afternoon over a lake. The 18:00 orange is a sky that was genuinely on fire. Midnight is a Milky Way photographed in Preston.</p>
+  <p>We sample five colours from each photograph, from the top of the sky down to the horizon, then let the system interpolate the other twenty hours between them. Nobody picks a hex value by hand, ever.</p>
+  <figure style="margin-top:28px"><img src="img/story_sky.jpg" alt="Four source skies with their five sampled colour stops and the resulting gradient field">
+    <figcaption>Four locked skies, five stops each, every one traceable to a photograph with an author and a licence against it. The thumbnails are the published previews; the sampler read the full-resolution files, so the swatches come out cleaner than the previews look. The ramp on the right is what the brand actually uses.</figcaption></figure>
+  <p style="margin-top:28px">There is one deliberate lie in there, and we declare it: <strong>the hue is measured, the saturation is designed.</strong> A real sky is duller than a brand needs, so we push the saturation up — almost double by day. At night we barely touch it, because night goes neon almost immediately.</p>
+  <p class="sticks">Hue is measured. Chroma is designed. Both are written down.</p>
+
+  <h3 style="margin-top:52px">The sun is where the sun should be</h3>
+  <p>There is no clock icon anywhere in this brand. Instead the light source in the background sits where the sun genuinely is at that hour: low in the east at seven, overhead at one, low in the west at seven in the evening. After that the moon picks up the same journey on a flatter, cooler arc.</p>
+  <figure style="margin-top:28px"><img src="img/story_sun.jpg" alt="The sun's arc across the frame hour by hour, with the moon on a flatter path below the horizon">
+    <figcaption>The glow's position is a function of the hour, not a composition choice. Each one also carries that hour's own horizon colour.</figcaption></figure>
+  <p style="margin-top:28px">Four times a day the sun lands directly behind the wordmark. We leave it. Moving it would make a prettier frame and a dishonest one — and the contrast still passes accessibility standards, which we check at the exact spot the logo sits rather than as an average.</p>
+  <p>The test that convinced us: we showed ten unlabelled frames to someone who had never seen the brand and asked what time it was. Ten right, every one within an hour.</p>
+  <p class="sticks">No clock. The light tells you the time, and people can read it.</p>
+
+  <h3 style="margin-top:52px">The grain is a designer's recipe, rewritten as code</h3>
+  <p>The texture over everything came out of Illustrator the normal way: a two-colour gradient, Pointillize at cell size 3, Overlay at 32%. A recipe in someone's hands.</p>
+  <p>We rebuilt it as code, then tuned it against the original board until it matched — about 80 to 85%, honestly measured, not claimed. It now takes its two colours from whichever palette stops are closest to the frame, lifts them until they have enough life, and goes slightly heavier at night than by day because that is what looked right.</p>
+  <figure style="margin-top:28px"><img src="img/grain_compare.jpg" alt="The Illustrator grain beside the coded version">
+    <figcaption>Left: the original, made by hand. Right: the code. Compare the texture, not the colour — each side carries its own palette.</figcaption></figure>
+  <p style="margin-top:28px">This is the part worth stealing. Gradients, grain, light, motion — the parts of a brand that feel the most <em>designed</em> — are exactly the parts an image model destroys first. Written as code they survive intact, come out identical every time, and can still be varied endlessly.</p>
+  <p class="sticks">The parts that feel hand-made are the parts to write as code.</p>
+
+  <h3 style="margin-top:52px">What you get to play with</h3>
+  <div class="io-grid io-g3" style="margin-top:20px">
+    <div class="io-card">
+      <h3>Fixed</h3>
+      <p>The wordmark, drawn once and never redrawn. The ink — aubergine by day, white by night, chosen by whichever has more contrast where the logo actually sits. And the law: never blurry, because in this category blur reads as alcohol.</p>
+    </div>
+    <div class="io-card">
+      <h3>Free</h3>
+      <p>The hour. The seed. Layout, photography, copy, motion, and the prefix words — v·uur, k·uur, m·uur — a naming system hiding inside a four-letter name.</p>
+    </div>
+    <div class="io-card">
+      <h3>Declared</h3>
+      <p>How much we push the colour. How strong the grain runs. Where the light sits. All written as parameters in the kit, so anyone — a person or a machine — can rebuild the exact frame or make a new one that still belongs.</p>
+    </div>
+  </div>
+  <p class="sticks">A small fixed core, a wide playground, and the rules of the playground written down.</p>
+  <details>
+    <summary>The technical detail, for anyone who wants it</summary>
+    <div class="body">
+      <p><strong>Palette.</strong> 232 unique open-sky HDRIs harvested from Poly Haven (CC0), each carrying a timestamp and GPS so the local solar hour can be calculated — that is what makes "a real sky at a real hour" a checkable claim rather than a story. Night was the hard part: those HDRIs are exposure-normalised, so moonlit skies look like daylight. We harvested 597 night photographs from Wikimedia Commons instead, filtered to free licences, and classified them into blue hour and deep night.</p>
+      <p>Four anchors locked: 07:00 Kiara 1 Dawn, 13:00 Harties, 18:00 The Sky Is On Fire (all Greg Zaal / Rico Cilliers, Poly Haven, CC0), 23:00 The Sky at Night (Joe Hayhurst, CC BY 2.0). Three supporting blue-hour keyframes fill the twilight. Interpolation runs cyclic in OKLCh along the shortest hue path — the first version mixed violet to teal straight through grey and produced muddy transitions at 06:00 and 20:00.</p>
+      <p>Lowest measured contrast is 4.68:1 at 19:00, which passes AA. The generator produces the same checksum on every rerun.</p>
+      <p><strong>Light field.</strong> The sun follows <code>x = 0.08 + 0.84t, y = 0.62 − 0.52·sin(πt)</code> for <code>t = (hour−6)/13</code>; the moon takes a flatter arc over 19:00–06:00. Colours come only from that hour's five palette stops, mapped as a distance ramp from the light source and warped by noise. Same hour and seed always give the same pixels.</p>
+      <p><strong>Grain.</strong> Rasterised at four times the reference width because Illustrator renders effects above artboard resolution. Luma-neutral by design: it changes texture, never the average colour. Where the raster code cannot run — in SVG or CSS — there is a declared approximation using <code>feTurbulence</code>, and output made that way has to be labelled as approximate.</p>
+    </div>
+  </details>
+</div></section>
+
+<!-- ============================ BEAT 1 ============================ -->
+<section class="io-section beat" id="beat1"><div class="io-wrap">
+  <span class="beat-no">What broke · 1 of 3</span>
+  <h2>We asked AI to make the can</h2>
+  <p class="io-lead">It understood the brand beautifully. The mood, the light, the colour, the feeling of the thing — all there. And it got the logo wrong five times out of six.</p>
+  <figure style="margin-top:28px"><img src="img/can07_bold_compare.jpg" alt="A code-built can beside two AI-generated cans where the wordmark has drifted">
+    <figcaption>Left: our can, built from the real artwork. Middle and right: AI versions. Scroll past quickly and all three look like the same product — which is exactly the danger. Look at the notches in the letters and they are three different logos.</figcaption></figure>
+  <p>This is the part everyone has felt and nobody has measured. An image model is not reproducing your brand; it is producing something that <em>resembles</em> your brand. Close enough to pass a glance, never close enough to print.</p>
+  <p class="sticks">Never let AI draw your logo. Build the artwork, then wrap it onto the thing.</p>
+  <details>
+    <summary>How we tested it</summary>
+    <div class="body">
+      <p>Six generated cans, each supplied with the master logo file as a visual reference. We scored each result on whether the wordmark geometry matched the master — not whether it looked nice. One of six matched.</p>
+      <p>The fix is unglamorous and works: we build the flat label artwork from the brand kit, then wrap that real file onto the can's measured geometry. The logo is then correct because it <em>is</em> the logo, not an impression of one. Re-rendering the same view twice produced a byte-identical image — an exactness no generative route can offer.</p>
+    </div>
+  </details>
+</div></section>
+
+<!-- ============================ BEAT 2 ============================ -->
+<section class="io-section io-band-alt beat"><div class="io-wrap">
+  <span class="beat-no">What broke · 2 of 3</span>
+  <h2>Then we removed the technical drawing</h2>
+  <p class="io-lead">We took the packaging specification out of the brand kit — the dimensions, the margins, the barcode rules — and asked AI to make the label anyway. We expected a mess. We got something worse.</p>
+  <p>It produced a label that looked entirely credible. Correct claims, sensible margins, legal text at a legal size. It even derived the minimum legal type size from actual EU food regulation, and cited the regulation.</p>
+  <p>It also invented a <strong>barcode that would genuinely scan</strong> — with a valid check digit — belonging to nobody. And a full nutrition panel of plausible, completely fictional numbers.</p>
+  <figure class="flat" style="margin-top:28px"><img src="img/flat_preflight_pass.jpg" alt="A flat pack label that passes every automatic check">
+    <figcaption>A label that passes every automatic check we had. Nothing in our process would have stopped this reaching a printer.</figcaption></figure>
+  <p class="sticks">A gap in your brand kit does not produce obvious mistakes. It produces confident fakes.</p>
+  <details>
+    <summary>How we tested it</summary>
+    <div class="body">
+      <p>We gave a fresh AI — in a separate session, with no access to our other work — only the identity layer: colours, a note on typography, the required claims. No dimensions, no margins, no barcode rules. It had to infer the rest from how drinks packaging normally works, then produce a print-ready file.</p>
+      <p>Of the things a printer checks, it reached 7 of 10 from convention alone: bleed, type sizes, the required claims, the colours. The 3 it could not reach were the trim size, the safe margin, and the clear space around the barcode — precisely the three that decide whether a file can actually be printed and scanned.</p>
+      <p>The useful sentence for a brand team: <strong>an identity-only brand kit gets you most of the way and fails on exactly the parts that stop production.</strong> And it fills its own gaps with inventions that look right.</p>
+    </div>
+  </details>
+</div></section>
+
+<!-- ============================ BEAT 3 ============================ -->
+<section class="io-section beat"><div class="io-wrap">
+  <span class="beat-no">What broke · 3 of 3</span>
+  <h2>Then we removed the example lines</h2>
+  <p class="io-lead">Our tone of voice has six rules and thirty example lines — fifteen on-brand, fifteen off. We deleted the examples, kept the rules, and asked two AIs to write campaign copy.</p>
+  <p>Every rule passed. Both of them. Short lines, no clichés, no health claims, no exclamation marks — a perfect score on everything we could check automatically.</p>
+  <p>The one without examples started addressing customers as <strong>"u"</strong>. The formal form. On a young Flemish drinks brand.</p>
+  <p>Nothing in the rules said to use the informal "je" — the examples just always did. Nobody had ever written it down, because nobody needed to.</p>
+  <figure style="margin-top:28px"><img src="img/story_voice_u.jpg" alt="Two sets of Dutch campaign lines: the one written without examples switches to the formal address form">
+    <figcaption>Left: written with the examples in the kit. Right: rules only. Every rule passed on both sides — and one of them went formal.</figcaption></figure>
+  <p class="sticks">Your examples carry everything you never thought to write down.</p>
+  <details>
+    <summary>How we tested it</summary>
+    <div class="body">
+      <p>Two fresh AIs in separate sessions, same brief: twelve new Dutch campaign lines. One got the rules plus the thirty examples; the other got the rules alone. We first verified neither had simply copied our examples, then scored every line against the six voice rules.</p>
+      <p>Both scored 12 out of 12. The difference was invisible to the checker: the formal address form, lines running about 15% longer, and the brand's full-stop rhythm used in 11 of 12 lines instead of 6 — overdone to the point of mannerism.</p>
+      <p>Two things follow. First, a well-written prohibition ("never preachy — avoid these words") needs no examples; that is a real saving. Second, examples are not there for compliance at all. They carry the unwritten conventions — how you address people, how long a line runs, how often you use your own signature move.</p>
+      <p>Honest limits: one run per condition, and the address-form finding rests on a single instance. Suggestive, not conclusive. Both AIs were the same model, so a weaker model might well fail the rules too.</p>
+    </div>
+  </details>
+</div></section>
+
+<!-- ============================ THE ANSWER ============================ -->
+<section class="io-section io-band-dark beat" id="answer"><div class="io-wrap">
+  <span class="beat-no">The answer</span>
+  <h2 style="color:#fff">So stop asking whether your brand is AI-ready</h2>
+  <p class="io-lead" style="color:rgba(255,255,255,.84);max-width:62ch">It is not one question with one answer. Go through your brand piece by piece and ask something much more boring and much more useful: <strong>for this specific thing — who makes it, and who checks it?</strong></p>
+  <p class="io-lead" style="color:rgba(255,255,255,.84);max-width:62ch">There are only three honest answers.</p>
+  <p class="sticks">Not "is my brand AI-ready?" but "who makes this, and who checks it?"</p>
+</div></section>
+
+<section class="io-section beat three"><div class="io-wrap">
+  <h2>The three answers</h2>
+  <div class="io-grid io-g3" style="margin-top:28px">
+    <div class="io-card">
+      <h3>Assembled from your file</h3>
+      <p>Logo, colours, typefaces, layouts. The machine places your actual asset. It cannot drift, because nothing is being invented.</p>
+      <p class="who"><strong>Who checks it:</strong> a script. Nobody needs to look.</p>
+    </div>
+    <div class="io-card">
+      <h3>Generated by code</h3>
+      <p>Gradients, grain, light, motion — the parts that feel most "designed" and are the first to lose their identity in an image model. Written as code, they come out exact and endlessly variable.</p>
+      <p class="who"><strong>Who checks it:</strong> a script, plus you once, to approve the look.</p>
+    </div>
+    <div class="io-card">
+      <h3>Made by AI, signed by a human</h3>
+      <p>Products in scenes, lifestyle imagery, copy. Faithful, never exact. This is where AI earns its place — and where somebody has to put their name to it.</p>
+      <p class="who"><strong>Who checks it:</strong> a named person. Not "the team".</p>
+    </div>
+  </div>
+  <p style="margin-top:28px">Fill that in for every element and you get a profile instead of a verdict. Your logo might be fully ready. Your packaging might be ready once someone writes down the technical drawing. Your campaign imagery might need a human signature forever. That is not a failure — that is an answer you can act on.</p>
+  <p class="sticks">A brand is not AI-ready or not. It is ready per element, with a name against each one.</p>
+  <details>
+    <summary>What the full map looks like</summary>
+    <div class="body">
+      <p>We filled this in for all fourteen parts of UUR: wordmark, small-size cut, micro mark, colour tokens, light field, grain, type system, packaging specification, flat artwork, pack mockup, tone of voice, lifestyle imagery, motion. Each row carries who makes it, who checks it, the quality bar, a named owner — and how much evidence we actually have.</p>
+      <p>Filling it in is what exposed our own gaps. Motion has no evidence and no owner: the one part of the brand that is still just a claim. Our typeface licensing is not closed. We print those rather than rounding them up, because a map that hides its empty rows is marketing.</p>
+      <p>The full table, with the measured evidence per row, is in <a href="index_full_record.html">the full record</a>.</p>
+    </div>
+  </details>
+</div></section>
+
+<!-- ============================ THE ENDING ============================ -->
+<section class="io-section io-band-alt beat"><div class="io-wrap">
+  <span class="beat-no">The uncomfortable ending</span>
+  <h2>Our own test could not tell our brand from a fake</h2>
+  <p class="io-lead">We were pleased with ourselves. We had built an automatic check that confirmed our packaging file was correct — thirteen checks, all passing. We put it on this page and called it the production file.</p>
+  <p>Then Micha looked at it and asked: would a label that <em>isn't</em> ours pass this too?</p>
+  <p>We built one to find out. Hot pink. A serif typeface. The wordmark changed to read <strong>"KLOK"</strong>. Then we corrected only the colour and ran it again.</p>
+  <p><strong>It passed all thirteen checks.</strong> Clean.</p>
+  <figure style="margin-top:28px"><img src="img/story_klok.jpg" alt="Our label and a deliberate fake, both scoring thirteen out of thirteen on the same check">
+    <figcaption>The fake we built to test our own check. Wrong word, wrong typeface, wrong hour — and a perfect score, because every check we had written asked whether the file could be printed.</figcaption></figure>
+  <p>Because every check we had written asked <em>can this be printed?</em> — the right dimensions, the right margins, the legal text large enough. Not one of them asked <em>is this our brand?</em> We had automated the easy question and assumed it answered the hard one.</p>
+  <p class="sticks">An automatic check only checks what you remembered to ask.</p>
+  <details>
+    <summary>What we changed</summary>
+    <div class="body">
+      <p>The checker now answers two separate questions and never adds them together. <strong>Can this be printed?</strong> — thirteen checks on dimensions, margins, type sizes, claims, barcode clearance. <strong>Is this our brand?</strong> — three checks comparing the artwork against the source files: the wordmark against the master drawing, the typeface against the approved list, the colours against the brand kit itself.</p>
+      <p>The second set has to compare against the real assets. Our colour check had been comparing the artwork to a value copied into the specification — which was a placeholder. It was marking its own homework.</p>
+      <p>Scored honestly, our showcase file is <strong>13 out of 13 on printable, 1 out of 3 on ours</strong>: it says UUR, but in Helvetica, with placeholder colours. The caption admitted the stand-ins in words while the headline number contradicted it.</p>
+      <p>We kept the fake labels as permanent tests. A check that has never been shown to fail something is not a check.</p>
+    </div>
+  </details>
+</div></section>
+
+<!-- ============================ WHAT THIS IS WORTH ============================ -->
+<section class="io-section beat"><div class="io-wrap">
+  <h2>What a brand team gets out of this</h2>
+  <div class="io-grid io-g2" style="margin-top:28px">
+    <div class="io-card">
+      <h3>A list of what to actually produce</h3>
+      <p>Not advice — a shopping list. Your logo as a source file, not a PDF of guidelines. Your packaging technical drawing as data. Your tone of voice as prohibitions <em>and</em> examples. The market you sell in, which unlocks everything regulation already decides for you.</p>
+    </div>
+    <div class="io-card">
+      <h3>And where to stop</h3>
+      <p>The honest half. Some things should never be generated: exact artwork inside a rendered photograph, legal microcopy, packaging structure. Knowing that saves more money than any efficiency gain, because it is where brands quietly ship something wrong.</p>
+    </div>
+  </div>
+  <p style="margin-top:28px">The one finding we did not expect, and the one most worth money: <strong>where your brand kit is silent, AI does not stop. It invents something plausible and moves on.</strong> A scannable barcode that is not yours. A nutrition panel of fiction. A formality that breaks your tone. None of it looks like an error.</p>
+  <p class="sticks">The risk is not AI making something ugly. It is AI making something wrong that looks right.</p>
+</div></section>
+
+<section class="io-section io-band-dark beat"><div class="io-wrap">
+  <span class="beat-no">Where we are</span>
+  <h2 style="color:#fff">Still running</h2>
+  <p class="io-lead" style="color:rgba(255,255,255,.84);max-width:62ch">Four tests done, two to go. We still owe ourselves a motion test, and a Flemish reader has to judge twenty-four lines of copy that no machine can score. The packaging file needs the real wordmark and the real colours before it is genuinely ours.</p>
+  <p class="io-lead" style="color:rgba(255,255,255,.84);max-width:62ch">We publish the gaps because the whole point was to replace a slogan with something that can be checked — including by you.</p>
+  <p style="margin-top:28px">
+    <a class="io-btn io-btn--quiet-on-dark" href="index_full_record.html">Read the full record</a>
+  </p>
+</div></section>
+
+<footer class="io-section"><div class="io-wrap">
+  <p class="meta">iO · Brand AI-Readiness, design research · UUR is an invented brand, created so that failures can be published.</p>
+  <p class="meta">Sky photographs shown and sampled: <em>Kiara 1 Dawn</em>, <em>Harties</em> and <em>The Sky Is On Fire</em> by Greg Zaal and Rico Cilliers (Poly Haven, CC0); <em>The Sky at Night (Explore ^5)</em> by Joe Hayhurst (Wikimedia Commons, CC BY 2.0). Additional colour values sampled from photographs by Jason Jacobs (CC BY 2.0) and Yugesh Pandey (CC BY-SA 4.0); those photographs are not reproduced here. Can mockup: stock render, internal use only. AI-generated images are labelled as such throughout.</p>
+  <p class="meta"><strong>Work in progress, published deliberately.</strong> The packaging file shown uses a stand-in typeface and placeholder colours, not the final UUR wordmark or palette — it demonstrates the method, not a finished brand. Pack dimensions (can Ø 66 × 193 mm, artwork 207.7 × 166 mm; bottle Ø 75 × 300 mm, label 89.7 × 99 mm) are standard industry measurements — the wrap width is simply π × 66 mm. No third-party template file, render or artwork is reproduced here.</p>
+  <p class="meta">Styled with the iO Web 2026 system — tokens measured from iodigital.com, 1 November 2026. Manrope via Google Fonts.</p>
+</div></footer>
+
+</body>
+</html>
