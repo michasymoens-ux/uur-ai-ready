@@ -122,7 +122,7 @@
   <p class="io-lead" style="max-width:70ch">The brand core is designed, the parametric layer is built, and the kit now produces a print-ready packaging file that passes preflight unattended. The question we answer is not <em>can AI reproduce a brand</em> — it is <strong>which parts of a brand kit are load-bearing, and where control ends</strong>.</p>
 
   <div class="io-grid io-g4" style="margin-top:40px">
-    <div class="io-stat"><b>13/13</b><span class="meta">producibility checks passed on the pack artwork, up from 10/13 — but <strong>identity is 1 of 3</strong> until the master SVG and real tokens land</span></div>
+    <div class="io-stat"><b>13/13</b><span class="meta">producibility checks passed on the pack artwork, up from 10/13 — but <strong>identity is only 1 of 3</strong>: the flat was built with a Helvetica stand-in, even though the master wordmark was available the whole time</span></div>
     <div class="io-stat"><b>7/10</b><span class="meta">reached by an identity-only kit; the three it misses are trim geometry, safe zone and barcode quiet zone</span></div>
     <div class="io-stat"><b>12/12</b><span class="meta">voice rules passed with <em>and</em> without exemplars — a good prohibition needs no example</span></div>
     <div class="io-stat"><b>1 in 6</b><span class="meta">correct logos when an image model makes the can: the boundary where exact artwork cannot be injected</span></div>
@@ -184,11 +184,12 @@
     <tr><td>Grain</td><td>2</td><td>shader port of the designer's recipe</td><td>matches spec, no banding</td><td>auto + human</td><td><span class="st st-yes">measured</span>~80–85%</td></tr>
     <tr><td>Type system</td><td>1</td><td>named families + hierarchy rules</td><td>no substitution</td><td>auto</td><td><span class="st st-part">partly measured</span>licensing open</td></tr>
     <tr><td><strong>Pack structure spec</strong></td><td>1</td><td>dieline, bleed, safe zone, barcode, type minima</td><td>preflight pass</td><td>auto</td><td><span class="st st-yes">measured</span>7/10 without it</td></tr>
-    <tr><td><strong>Flat pack artwork</strong></td><td>1 → 2</td><td>kit + pack spec, assembled by code</td><td>producibility 13/13 <em>and</em> identity 3/3</td><td>auto</td><td><span class="st st-part">partly measured</span>producibility 13/13, identity 1/3</td></tr>
+    <tr><td><strong>Flat pack artwork</strong></td><td>1 → 2</td><td>kit + pack spec, assembled by code</td><td>producibility 13/13 <em>and</em> identity 3/3</td><td>auto</td><td><span class="st st-part">partly measured</span>producibility 13/13, identity 1/3 — stand-in type used despite the master being available</td></tr>
     <tr><td>Pack mockup</td><td>1</td><td>the real flat on spec geometry</td><td>byte-identical re-render</td><td>auto</td><td><span class="st st-part">partly measured</span>picture parked</td></tr>
     <tr><td><strong>Voice</strong></td><td>3</td><td>prohibitive rules + avoid-lists + exemplars</td><td>auto-rules 100% plus a blind human read</td><td><strong>human gate</strong></td><td><span class="st st-part">partly measured</span>read pending</td></tr>
     <tr><td>Product in lifestyle</td><td>3</td><td>reference plates + QC rubric</td><td>per-element QC, hit rate recorded</td><td><strong>human gate</strong></td><td><span class="st st-part">partly measured</span></td></tr>
-    <tr><td>Motion / video</td><td>2 in 3</td><td><em>intended: vector motion file</em></td><td>seamless loop; logo identical every frame</td><td>auto + human</td><td><span class="st st-no">untested</span>no owner</td></tr>
+    <tr><td><b>Layout / formats</b></td><td>1</td><td><em>missing: grid, safe areas, per-format lockup behaviour</em></td><td>wordmark 50% of frame width · clear space ≥ 0.25× · safe areas respected</td><td>auto + human</td><td><span class="st st-part">partly measured</span>18/24, but one composition at three sizes</td></tr>
+    <tr><td>Motion / video</td><td>2 in 3</td><td>the light-field generator, run across 24 hours</td><td>seamless loop; logo identical every frame; byte-identical re-render</td><td>auto + human</td><td><span class="st st-part">partly measured</span>loop proven; owner Micha; generated video untested</td></tr>
   </table></div>
 
   <h3 style="margin-top:44px">What the profile says — and why it is not a score</h3>
@@ -203,7 +204,7 @@
     </div>
     <div class="io-card">
       <h3>Not ready</h3>
-      <p>Motion has no evidence and no owner, so it is the one drawer that is still only a claim. Type licensing is open. We print that rather than rounding it up.</p>
+      <p>Motion now has evidence — a deterministic 24-hour loop, byte-identical on re-render — plus an owner and a declared continuity rule. Exact artwork inside generated video is still untested. Type licensing is open. We print that rather than rounding it up.</p>
     </div>
   </div>
   <p class="claim">A brand is not AI-ready or not. It is ready per element, per use case — and the map is the answer.</p>
@@ -237,7 +238,7 @@
     <tr><td>Flat v0.2, after patching the kit</td><td><span class="st st-yes">13 / 13</span></td><td>no failures</td></tr>
   </table></div>
   <p class="meta" style="margin-top:16px">Checked: trim box against the dieline (207.70 × 166.00 mm), bleed on all four sides, minimum and legal type sizes, required claims present (<code>0,0% vol</code>, <code>500 ml</code>), text inside the safe zone, exact token colours, barcode quiet zone, fonts embedded — plus three checks on the spec itself.</p>
-  <figure class="tall" style="margin-top:28px"><img src="img/flat_preflight_pass.jpg" alt="UUR flat pack artwork that passes all thirteen preflight checks"><figcaption>The flat that passes 13 of 13 <strong>producibility</strong> checks. It is a <strong>producible</strong> file, not yet an on-brand one: the wordmark is set in Helvetica and the palette is placeholder, so it scores <strong>1 of 3 on identity</strong>. Dimensions are real.</figcaption></figure>
+  <figure class="tall" style="margin-top:28px"><img src="img/flat_preflight_pass.jpg" alt="UUR flat pack artwork that passes all thirteen preflight checks"><figcaption>The flat that passes 13 of 13 <strong>producibility</strong> checks. It is a <strong>producible</strong> file, not yet an on-brand one: the wordmark is set in Helvetica and the palette is placeholder, so it scores <strong>1 of 3 on identity</strong>. Dimensions are real. The stand-in was our oversight rather than a missing asset — the designed wordmark has been in the project since 18 October.</figcaption></figure>
 
   <h3 style="margin-top:44px">A spec can contradict itself</h3>
   <p>Our first attempt paired one can's wrap width with another can's diameter. The numbers looked plausible and the render came out looking like a food tin. So preflight now checks the spec before the artwork.</p>
@@ -423,7 +424,7 @@
     <tr><th>Level</th><th>Drawer</th><th>Status</th></tr>
     <tr><td><strong>Print-ready pack artwork from the kit</strong></td><td>1 → 2</td><td><span class="st st-yes">proven, 13/13 preflight</span></td></tr>
     <tr><td>Logo from the kit</td><td>1</td><td><span class="st st-yes">proven</span></td></tr>
-    <tr><td>Layout assembly: labels and lockups</td><td>1</td><td><span class="st st-part">built</span></td></tr>
+    <tr><td>Layout assembly: labels and lockups</td><td>1</td><td><span class="st st-part">label artwork only — social/poster formats measured separately, run E2</span></td></tr>
     <tr><td>Dynamic identity: the light carries the hour</td><td>2</td><td><span class="st st-yes">proven, blind test</span></td></tr>
     <tr><td>Gradient and grain as code</td><td>2</td><td><span class="st st-yes">proven</span></td></tr>
     <tr><td>Tone of voice</td><td>3</td><td><span class="st st-part">12/12 with and without exemplars; blind read pending</span></td></tr>
@@ -431,7 +432,7 @@
     <tr><td>Can mockup from the real flat</td><td>1</td><td><span class="st st-part">route proven and deterministic; picture needs craft</span></td></tr>
     <tr><td>Can in lifestyle</td><td>3</td><td><span class="st st-part">first round</span></td></tr>
     <tr><td>Code gradient against AI gradient</td><td>2 / 3</td><td><span class="st st-part">material ready</span></td></tr>
-    <tr><td>AI writes a new motion loop</td><td>2</td><td><span class="st st-no">to do</span></td></tr>
+    <tr><td><b>24-hour loop from the kit</b></td><td>2</td><td><span class="st st-yes">proven — loops, byte-identical re-render</span></td></tr>
     <tr><td>Point-of-sale, flat and in context</td><td>1 / 3</td><td><span class="st st-no">to do</span></td></tr>
     <tr><td>Video, and live code inside a generated scene</td><td>3 / 2-in-3</td><td><span class="st st-no">to do</span></td></tr>
     <tr><td>Provenance: C2PA plus a visible label</td><td>3</td><td><span class="st st-no">to do</span></td></tr>
@@ -442,16 +443,16 @@
   <h2>Next</h2>
   <div class="io-grid io-g3" style="margin-top:24px">
     <div class="io-card">
-      <h3>Motion: assign it or drop it</h3>
-      <p>The readiness map shows motion as the one drawer with no evidence and no owner. Either build the vector-motion proof — a loop whose logo is exact by construction — or declare it out of scope. An untested row in a client-facing map is the overclaim this POC exists to avoid.</p>
+      <h3>Motion: the remaining half</h3>
+      <p>The loop is built and proven: frame 0 equals frame N, and the MP4 re-encodes to the same hash. Micha owns motion, and the continuity rule is decided — the moon rises where the sun set. What remains is the hard half: exact artwork inside a model-generated video.</p>
     </div>
     <div class="io-card">
       <h3>Finish the ablation table</h3>
-      <p>Two rows are measured. The logo row needs the master SVG, and it carries the strongest sentence available: whether a brand book can replace a source file.</p>
+      <p>Two rows are measured. The logo row — whether a brand book can replace a source file, the strongest sentence available — was never blocked: the master wordmark has been in the project since 18 October and the tooling opens it directly. We simply had not run it.</p>
     </div>
     <div class="io-card">
       <h3>Brand design</h3>
-      <p>The master wordmark and real sky tokens into the pack flat, plus the hour label, final serif, subline spacing and the prefix letters.</p>
+      <p>The real sky tokens into the pack flat, plus the hour label, final serif, subline spacing and the prefix letters. The master wordmark is done and already in the project — placing it into the pack flat is ours to do, not the designer's.</p>
     </div>
   </div>
   <div class="io-grid io-g3" style="margin-top:28px">
@@ -474,6 +475,9 @@
   <h2>Running log</h2>
   <p>Newest first. The internal generation log contains every round, including the failures.</p>
   <ul class="log" style="margin-top:24px">
+    <li><time>2 Nov</time><p><strong>Ablation E2: the layout gap.</strong> Micha asked where the POC tests the minimum a kit needs to make social formats and posters. It did not — no layout row in the readiness map, no layout ablation. An isolated agent given the kit’s layout sections verbatim produced a story, a square post and an A2 poster: 18/24 on the stated rules, and the same composition three times — wordmark at 50.0% of frame width in all three, vertical anchor drifting under 5 points. <strong>A lockup is not a layout system.</strong> Two corrections to our own expectations: proportional rules generalised perfectly to unseen aspect ratios (write ratios, not millimetres), and the agent’s self-report was wrong — it claimed the kit held no colour values when it held ten and the output used them. Verify self-reports against the artefact.</p></li>
+    <li><time>2 Nov</time><p><strong>Continuity rule decided; Micha owns motion.</strong> The moon now rises where the sun set and travels back east, so the light never jumps across the frame. Measured: the handover discontinuity fell from 0.82 to 0.30 of the frame width, and what remains is a vertical rise rather than a sideways jump — the glow holds the same side right through sunset. Declared in <code>body_pos()</code> as a brand rule, not astronomy: a real moon does not retrace the sun’s path. Loop re-rendered; still loops at 0.000/255 and still byte-identical on re-encode.</p></li>
+    <li><time>2 Nov</time><p><strong>Motion test: the 24-hour loop.</strong> 300 frames, 12 seconds, rendered from the existing light-field generator — nobody keyframed it. Frame 0 and the 24-hour mark differ by 0.000/255, and the MP4 re-encodes to the same SHA-256, so the parametric claim now holds in time as well as in stills. It also found a brand bug invisible in a still frame: at the sun/moon handover the light resets to the opposite edge, because each body runs its own west-to-east arc. The kit had no rule for what happens <em>between</em> states. A system can be right in every frame and wrong in time.</p></li>
     <li><time>1 Nov</time><p><strong>Preflight split into producibility and identity.</strong> Micha asked what a 13/13 pass actually meant. Two deliberately off-brand probes proved the hole: a flat whose wordmark read "KLOK" in a serif scored a clean 13/13. None of the thirteen checks asked whether the brand was the brand, and the colour check compared artwork to a placeholder in our own spec. Three identity criteria added, checked against source assets. Our own showcase flat is now honestly 13/13 producibility and 1/3 identity.</p></li>
     <li><time>1 Nov</time><p><strong>Readiness map built, 14 elements.</strong> Every element with its drawer, source of truth, quality bar, check type, owner and evidence state. Building it exposed two gaps the project had not confronted: motion has no evidence and no owner, and type licensing is not closed.</p></li>
     <li><time>1 Nov</time><p><strong>Ablation row two: a null result that matters.</strong> Voice rules with and without exemplars both scored 12/12 on every machine-checkable rule. But the kit without exemplars produced a formal address form on a consumer brand, longer lines and overuse of a brand device — the exemplars were carrying the unwritten conventions, not the compliance.</p></li>
@@ -494,7 +498,7 @@
 
 <footer class="io-section"><div class="io-wrap">
   <p class="meta">iO · Brand AI-Readiness proof of concept · internal R&amp;D. UUR is an invented brand, created for research.</p>
-  <p class="meta">Sky photographs shown and sampled: <em>Kiara 1 Dawn</em>, <em>Harties</em> and <em>The Sky Is On Fire</em> by Greg Zaal and Rico Cilliers (Poly Haven, CC0); <em>The Sky at Night (Explore ^5)</em> by Joe Hayhurst (Wikimedia Commons, CC BY 2.0). Additional colour values sampled from photographs by Jason Jacobs (CC BY 2.0) and Yugesh Pandey (CC BY-SA 4.0); those photographs are not reproduced here. Can mockup: stock render, internal use only. AI-generated images are labelled as such in the moodboard.</p>
+  <p class="meta">Sky colours sampled from photographs by Greg Zaal and Rico Cilliers (Poly Haven, CC0), Joe Hayhurst and Jason Jacobs (CC BY 2.0) and Yugesh Pandey (CC BY-SA 4.0). Can mockup: stock render, internal use only. AI-generated images are labelled as such in the moodboard.</p>
   <p class="meta"><strong>Pack dimensions</strong> — can Ø66 × 193 mm with 207.7 × 166 mm artwork, bottle Ø75 × 300 mm with an 89.7 × 99 mm front label — come from parametric mockup-template references. <strong>Licence and vendor attribution are pending, so this page is not cleared for external publication.</strong> The pack flat shown uses stand-in type and placeholder palette values, not the final UUR wordmark or sky tokens.</p>
   <p class="meta">Styled with the iO Web 2026 system: tokens measured from <code>iodigital.com</code> on 1 November 2026. Manrope via Google Fonts (OFL).</p>
 </div></footer>
